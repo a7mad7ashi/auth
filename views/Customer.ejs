@@ -1,0 +1,122 @@
+<%- include('./partials/navbar.ejs') %>
+<div class="main-content">
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <form action="/customer" method="POST">
+            <div class="card">
+              <div class="card-header">
+                <h4>Register customer</h4>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Customer Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Cname"
+                    name="Cname"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Cphone"
+                    name="Cphone"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Caddress"
+                    name="Caddress"
+                  />
+                </div>
+              </div>
+              <div class="card-footer text-right">
+                <button class="btn btn-primary mr-1" type="submit">
+                  Submit
+                </button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- table -->
+
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Customers</h4>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(Custom){ %> <% let i = 1 %>
+                     <% Custom.forEach(customer => { %>
+                  <tr>
+                    <th scope="row"><%= i %></th>
+                    <td><%= customer.Cname %></td>
+                    <td><%= customer.phone %></td>
+                    <td><%= customer.address %></td>
+                  </tr>
+                  <% i =i+1 %> <% })%> <% } else {%>
+                  <p>there is no blogs yet.......</p>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    FilePond.registerPlugin(
+      FilePondPluginImagePreview,
+      FilePondPluginImageResize,
+      FilePondPluginFileEncode
+    );
+    // https://pqina.nl/filepond/docs/patterns/api/filepond-object/#setting-options
+    FilePond.setOptions({
+      stylePanelAspectRatio: 30 / 50,
+      imageResizeTargetWidth: 100,
+      imageResizeTargetHeight: 50,
+    });
+    FilePond.parse(document.body);
+  });
+</script> -->
+
+<%- include('partials/footer.ejs') %>

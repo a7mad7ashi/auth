@@ -1,0 +1,130 @@
+
+<%- include('./partials/navbar.ejs') %>
+<div class="main-content">
+<section class="section">
+<div class="section-body">
+ <div class="row">
+<div class="col-12 col-md-12 col-lg-12">
+
+ <div class="card">
+     
+                  <div class="card-header">
+                    <h4>Register Product</h4>
+                  </div>
+                  <div class="card-body">
+                      <form action="/createProduct" method="POST">
+                    <div class="form-group">
+                      <label>Product Name</label>
+                      <input type="text" class="form-control" id="productName" name="productName">
+                    </div>
+                    <div class="form-group">
+                      <label>Product Price</label>
+                <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <!-- <span class="input-group-text">$</span> -->
+  </div>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"  id="Price" name="Price">
+  <div class="input-group-append">
+  
+  </div>
+</div>
+                      <!-- <input type="text" aria-label="Amount (to the nearest dollar)" class="form-control" id="Price" name="Price"> -->
+                    </div>
+                     <div class="form-group">
+                      <label>Product Quantity</label>
+                      <input type="number"  class="form-control" id="Quantity" name="Quantity">
+                    </div>
+                    
+                
+                    <div class="form-group">
+                      <label>File</label>
+                      <!-- <input type="file" class="form-control" id="img" class="filepond filepond--item" name="img"> -->
+                      <div class="custom-file mb-3">
+                          <input type="file" name="img" id="file"  class="filepond filepond--item" style="width: 100px !important; height: 100px !important;">                
+                        </div>
+                    </div>
+                    
+                   
+                   
+                      
+                   
+                  
+                   
+                    
+                    
+                   
+                  <div class="card-footer text-right">
+                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                    <button class="btn btn-secondary" type="reset">Reset</button>
+                  </div>
+                  </form>
+                </div>
+
+
+
+            </div>
+</div>
+</div>
+</section>
+<section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Products</h4>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(pro){ %> <% let i = 1 %> 
+                    <% pro.forEach(product => { %>
+                  <tr>
+                    <th scope="row"><%= i %></th>
+                    <td><%= product.productName %></td>
+                    <td><%="$"+ product.Price + ".00" %></td>
+                    <td><%= product.Quantity %></td>
+                  </tr>
+                  <% i =i+1 %> <% })%> <% } else {%>
+                  <p>there is no blogs yet.......</p>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            FilePond.registerPlugin(
+                FilePondPluginImagePreview,
+                FilePondPluginImageResize,
+                FilePondPluginFileEncode,
+     
+
+
+            );
+            // https://pqina.nl/filepond/docs/patterns/api/filepond-object/#setting-options
+            FilePond.setOptions({
+                stylePanelAspectRatio: 30 / 50,
+                imageResizeTargetWidth: 100,
+                imageResizeTargetHeight: 50,
+            })
+            FilePond.parse(document.body);
+        });
+
+    </script>
+
+                <%- include('partials/footer.ejs') %>
